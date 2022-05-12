@@ -19,13 +19,11 @@ public class Main {
             String s = new String(fileContent);
             // System.out.println("File content: \n" + s);  
             
-            // String regex = "variable\\s+?\\\"\\w+?\\\"\\s+?\\{((.|\\n)*?)\\}(\\z|\\s+?[^\\w])";
-            // Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+            // String regex101 = "variable\s+?\"\w+?\"\s+?\{((.|\n)*?)\}(\z|\s+?[^\w])";
             final Pattern p = Pattern.compile("variable\\s+?\\\"\\w+?\\\"\\s+?\\{((.|\\n)*?)\\}(\\z|\\s+?[^\\w])" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-
-        
+    
             Matcher m = p.matcher(s);
-        // Use results...
+            // Use results...
 
             while (m.find()) {
                 System.out.println("m.group():\n"+ m.group());

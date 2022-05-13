@@ -19,7 +19,7 @@ public class Main {
             String s = new String(fileContent);
             // System.out.println("File content: \n" + s);  
             
-            // String regex101 = "variable\s+?\"\w+?\"\s+?(\{(.|\n)*?\})(\z|\s+?[^\w\] ])";
+            // String regex101 = "variable\s+?\"\w+?\"\s+?(\{(.|\n)*?\})\s*+(?![\]\)\}])";
             final Pattern p = Pattern.compile( "variable\\s+?\\\"\\w+?\\\"\\s+?(\\{(.|\\n)*?\\})\\s*+(?![\\]\\)\\}])" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
     
             Matcher m = p.matcher(s);

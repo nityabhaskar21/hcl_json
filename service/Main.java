@@ -21,6 +21,7 @@ public class Main {
             
             // String regex101 = "variable\s+?\"\w+?\"\s+?(\{(.|\n)*?\})\s*+(?![\]\)\}])";
             final Pattern p = Pattern.compile( "variable\\s+?\\\"\\w+?\\\"\\s+?(\\{(.|\\n)*?\\})\\s*+(?![\\]\\)\\}])" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+            final Pattern extractDefault = Pattern.compile( "\\s*+default\\s*+=\\s*+(\\[(.|\\n)*?\\]|\\((.|\\n)*?\\)|\\\"\\w*?\\\"|\\{(.|\\n)*?\\})" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
     
             Matcher m = p.matcher(s);
             // Use results...

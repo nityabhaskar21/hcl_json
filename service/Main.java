@@ -20,13 +20,13 @@ public class Main {
             // System.out.println("File content: \n" + s);  
             
             // String regex101 = "variable\s+?\"\w+?\"\s+?(\{(.|\n)*?\})(\z|\s+?[^\w\] ])";
-            final Pattern p = Pattern.compile("variable\\s+?\\\"\\w+?\\\"\\s+?(\\{(.|\\n)*?\\})(\\z|\\s+?[^ \\w]])" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+            final Pattern p = Pattern.compile( "variable\\s+?\\\"\\w+?\\\"\\s+?(\\{(.|\\n)*?\\})\\s*+(?![\\]\\)]|(}\\W+]))" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
     
             Matcher m = p.matcher(s);
             // Use results...
-
+            int n = 1;
             while (m.find()) {
-                System.out.println("m.group():\n"+ m.group());
+                System.out.println(n+++" m.group():\n"+ m.group(1));
             }
 
             fin.close();    

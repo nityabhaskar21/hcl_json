@@ -7,6 +7,9 @@ variable "availability_zone_names" {
   default = ["us-west-1a"]
 }
 
+variable "test" {
+}
+
 variable "docker_ports" {
   type = list(object({
     internal = number

@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 /**
  * Main
  */
-public class DefaultMatcher {
+public class CustomVariableMatcher {
 
     public static void main(String[] args) {
         try{    
@@ -20,20 +20,14 @@ public class DefaultMatcher {
             // System.out.println("File content: \n" + s);  
             
             // String regex101 = "variable\s+?\"\w+?\"\s+?(\{(.|\n)*?\})\s*+(?![\]\)\}])";
-            final Pattern p = Pattern.compile( "variable\\s+?\\\"\\w+?\\\"\\s+?(\\{(.|\\n)*?\\})\\s*+(?![\\]\\)\\}])" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-            final Pattern extractDefault = Pattern.compile( "\\s*+default\\s*+=\\s*+(\\[(.|\\n)*?\\]|\\((.|\\n)*?\\)|\\\"\\w*?\\\"|\\{(.|\\n)*?\\})" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+            String variableName = "availability_zone_names";
+            final Pattern p = Pattern.compile( String.format("variable\\s+?\\\"%s\\\"\\s+?(\\{(.|\\n)*?\\})\\s*+(?![\\]\\)\\}])", variableName) , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
     
             Matcher m = p.matcher(s);
             // Use results...
             int n = 1;
-            String g = "";
             while (m.find()) {
-                // System.out.println(n+++" m.group():\n"+ m.group(1));
-                g = m.group(1);
-                Matcher defaultMatcher = extractDefault.matcher(g);
-                while (defaultMatcher.find()) {
-                    System.out.println(n+++" m.group():\n"+ defaultMatcher.group(1));
-                }
+                System.out.println(n+++" m.group():\n"+ m.group(1));
             }
 
             fin.close();    

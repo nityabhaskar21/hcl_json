@@ -3,6 +3,8 @@ package service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 
 public class ExtractProviderFromFolder {
@@ -23,19 +25,21 @@ public class ExtractProviderFromFolder {
                 fin.close();
               }
           }
-  
             // System.out.println("File content: \n" + allFileContent);  
             
             final Pattern extractProviderPattern = Pattern.compile( "provider(?:\\s++\\\"(\\w+)\\\"|\\W++(\\w+)\\\")" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-
+            List<String> providers = new ArrayList<String>();
             Matcher m = extractProviderPattern.matcher(allFileContent);
-            int n = 1;
             while (m.find()) {
-              if (m.group(1)!= null)
-                System.out.println(n+++" "+ m.group(1));
-              else 
-                System.out.println(n+++" "+ m.group(2));
+              if (m.group(1)!= null) {
+                providers.add(m.group(1));
+              }
+              else if (m.group(2)!= null) {
+                providers.add(m.group(2));
+              }
             }
+
+            System.out.println("Providers: "+ providers);
                
           } catch(Exception e){
             System.out.println(e);

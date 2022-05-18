@@ -24,7 +24,7 @@ public class ExtractProviderFromFolder {
               }
           }
   
-            System.out.println("File content: \n" + allFileContent);  
+            // System.out.println("File content: \n" + allFileContent);  
             
             final Pattern extractProviderPattern = Pattern.compile( "provider(?:\\s++\\\"(\\w+)\\\"|\\W++(\\w+)\\\")" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
 
@@ -32,9 +32,9 @@ public class ExtractProviderFromFolder {
             int n = 1;
             while (m.find()) {
               if (m.group(1)!= null)
-                System.out.println(n+++" m.group():\n"+ m.group(1));
+                System.out.println(n+++" "+ m.group(1));
               else 
-                System.out.println(n+++" m.group():\n"+ m.group(2));
+                System.out.println(n+++" "+ m.group(2));
             }
                
           } catch(Exception e){

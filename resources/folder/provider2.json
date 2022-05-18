@@ -1,0 +1,13 @@
+{
+    "provider": [
+      {
+        "google": [
+          {
+            "alias": "google-dev",
+            "project": "acme-app",
+            "region": "us-central1"
+          }
+        ]
+      }
+    ]
+  }

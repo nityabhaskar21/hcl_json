@@ -19,7 +19,7 @@ public class ZipFolderValidation {
 				ZipEntry entry = (ZipEntry) e.nextElement();
 				if (!entry.isDirectory()) {
                     if(List.of(".tf", ".json", ".tf.json").stream().anyMatch(ext -> entry.getName().endsWith(ext))) {
-                        folderSet.add(entry.getName().replaceFirst(	"(?<=[\\/\\\\])([\\w\\.]+)$", ""));
+                        folderSet.add(entry.getName().replaceFirst(	"(?<=[\\/\\\\])([\\w\\.\\s\\%]+)$", ""));
                     }
 					
 				}

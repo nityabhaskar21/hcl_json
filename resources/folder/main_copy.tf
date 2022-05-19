@@ -6,6 +6,9 @@ provider "azure" {
   version = "3.3.0"
 }
 
+provider "test_provider" {
+}
+
 variable "availability_zone_names" {
   type    = list(string)
   default = ["us-west-1a"]

@@ -13,12 +13,12 @@ public class ZipFolderValidation {
     public static void main(String[] args) throws IOException {
         ZipFile zip = null;
 		try {
-			zip = new ZipFile("E:\\hcl_json\\resources\\test.zip");
+			zip = new ZipFile("E:\\hcl_json\\resources\\test2.zip");
             Set<String> folderSet = new HashSet<> ();
 			for (Enumeration<?> e = zip.entries(); e.hasMoreElements();) {
 				ZipEntry entry = (ZipEntry) e.nextElement();
 				if (!entry.isDirectory()) {
-                    if(List.of(".tf", ".json", ".tf.json").stream().anyMatch(ext -> entry.getName().endsWith(ext))) {
+                    if(List.of(".tf", ".json", ".tf.json").stream().anyMatch(ext -> entry.getName().toLowerCase().endsWith(ext))) {
                         folderSet.add(entry.getName().replaceFirst(	"(?<=[\\/\\\\])([\\w\\.\\s\\%]+)$", ""));
                     }
 					

@@ -3,7 +3,7 @@
       {
         "google": [
           {
-            "alias": "google-dev",
+            "alias": "google-dev test",
             "project": "acme-app",
             "region": "us-central1"
           }

@@ -30,10 +30,10 @@ public class ExtractProviderAndKeyValueFromFolder {
             // System.out.println("File content: \n" + allFileContent);  
 
             // "(?:(?:\{\s+\")?provider)\W+(\w+)\"(?:[\s\[\{\:\-,\=\.]+).*?\}" flags=gmis , regex101 get provider block
-            // "(?:(?:\"?([\w\$\-\.]+)\"?[\s\:\=]++\"?([\w\-\$\.\= ]++)\"?)[\s\,]+)(?!\{)" flags=gmis , regex101 get key-value
+            // "	(?:(?:\"?([\w\$\-\.]+)\"?[\s\:\=]++\"?([\w\-\$\.\=\ \>\<\#]++)\"?)[\s\,]+)(?!\{)" flags=gmis , regex101 get key-value
             
             final Pattern extractProviderPattern = Pattern.compile( "(?:(?:\\{\\s+\\\")?provider)\\W+(\\w+)\\\"(?:[\\s\\[\\{\\:\\-,\\=\\.]+).*?\\}" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-            final Pattern extractKeyValuePattern = Pattern.compile( "(?:(?:\\\"?([\\w\\$\\-\\.]+)\\\"?[\\s\\:\\=]++\\\"?([\\w\\-\\$\\.\\= ]++)\\\"?)[\\s\\,]+)(?!\\{)" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+            final Pattern extractKeyValuePattern = Pattern.compile( "(?:(?:\\\"?([\\w\\$\\-\\.]+)\\\"?[\\s\\:\\=]++\\\"?([\\w\\-\\$\\.\\=\\ \\>\\<\\#]++)\\\"?)[\\s\\,]+)(?!\\{)" , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
             List<Map<String, String>> providers  = new ArrayList<Map<String, String>>();
             Matcher m = extractProviderPattern.matcher(allFileContent);
             while (m.find()) {

@@ -7,3 +7,8 @@ provider "google" {
   project = "acme-app"
   region  = "us-central1"
 }
+
+provider "gitlab" {
+token = var.TERRA_TOKEN
+base_url = "https://gitlab.com/api/v4/"
+}

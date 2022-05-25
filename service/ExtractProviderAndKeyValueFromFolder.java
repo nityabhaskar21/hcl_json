@@ -27,6 +27,7 @@ public class ExtractProviderAndKeyValueFromFolder {
                 fin.close();
               }
           }
+         
             // System.out.println("File content: \n" + allFileContent);  
 
             // "(?:(?:\{\s+\")?provider)\W+(\w+)\"(?:[\s\[\{\:\-,\=\.]+).*?\}" flags=gmis , regex101 get provider block

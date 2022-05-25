@@ -29,7 +29,7 @@ public class FindPatternAndReplace {
             int n = 1;
             while (m.find()) {
                 System.out.println(n+++" m.group():\n"+ m.group(1));
-                s = extractDefaultPattern.matcher(s).replaceAll("bar");
+                s = extractDefaultPattern.matcher(s).replaceAll("replaced_value");
                 Charset charset = StandardCharsets.UTF_8;
                 Files.write(Paths.get("E:\\hcl_json\\resources\\main_copy.tf"), s.getBytes(charset));
             }

@@ -60,8 +60,8 @@ public class ExtractKeyValueForProvidersAndVariablesFromTf1 {
                   providersVariablesList.add(providerVariableMap);
                 }
               }
-  
-              System.out.println("values: "+ providersVariablesList);
+
+              providersVariablesList.forEach(e -> System.out.println(e));
                  
             } catch(Exception e){
               System.out.println(e);

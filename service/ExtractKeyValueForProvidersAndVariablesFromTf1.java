@@ -30,14 +30,15 @@ public class ExtractKeyValueForProvidersAndVariablesFromTf1 {
                 }
             }
            
-              // System.out.println("File content: \n" + allFileContent);  
-  
-              // "(variable|provider)[\"\:\s\{]+([\w\-]++)(?:[\"\ ]++)(?:\{).*?(?:\})(?=(?:\s+\w|$))(?![^\{]*= *\{)(?![^\{]*= *[\w\$\"])" flags=gis , regex101 get provider block
-              // "(?:(type)\s*+\=\s*+(\w+)|(default)\s*+\=\s?+(\"\w+\"|\[(?:(?:[^\[\]]*)(?>\[[^\]]*\])*(?:[^\[]*))\]|\{(?:(?:[^\{\}]*)(?>\{[^\{\}]*\})(?:[^\{\}]*))*\})|(\w+)\s+\=\s+\"?([\/\w\-\$\.\=\ \>\<\#\:\\]++)\"?)" flags=gis , regex101 get key-value
+              // "(?:(type)\s*+\=\s*+(\w+)|(default)\s*+\=\s?+(\"\w+\"|\[(?:(?:[^\[\]]*)(?>\[[^\]]*\])?(?:[^\[\]]*))*\]|\{(?:(?:[^\{\}]*)(?>\{[^\}]*\})?(?:[^\{\}]*))*\})|(\w+)\s+\=\s+\"?([\/\w\-\$\.\=\ \>\<\#\:\\]++)\"?)" flags=gis , regex101 get provider block
+              // "(?:(type)\s*+\=\s*+(\w+)|(default)\s*+\=\s?+(\"\w+\"|\[(?:(?:[^\[\]]*)(?>\[[^\]]*\])?(?:[^\[\]]*))*\]|\{(?:(?:[^\{\}]*)(?>\{[^\}]*\})?(?:[^\{\}]*))*\})|(\w+)\s+\=\s+\"?([\/\w\-\$\.\=\ \>\<\#\:\\]++)\"?)" flags=gis , regex101 get key-value
               
               final Pattern extractProviderVariablePattern = Pattern.compile( "(variable|provider)[\\\"\\:\\s\\{]+([\\w\\-]++)(?:[\\\"\\ ]++)(?:\\{).*?(?:\\})(?=(?:\\s+\\w|$))(?![^\\{]*= *\\{)(?![^\\{]*= *[\\w\\$\\\"])"
+
               , Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-              final Pattern extractKeyValuePattern = Pattern.compile( 	"(?:(type)\\s*+\\=\\s*+(\\w+)|(default)\\s*+\\=\\s?+(\\\"\\w+\\\"|\\[(?:(?:[^\\[\\]]*)(?>\\[[^\\]]*\\])*(?:[^\\[]*))\\]|\\{(?:(?:[^\\{\\}]*)(?>\\{[^\\{\\}]*\\})(?:[^\\{\\}]*))*\\})|(\\w+)\\s+\\=\\s+\\\"?([\\/\\w\\-\\$\\.\\=\\ \\>\\<\\#\\:\\\\]++)\\\"?)" , Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+              final Pattern extractKeyValuePattern = Pattern.compile( "(?:(type)\\s*+\\=\\s*+(\\w+)|(default)\\s*+\\=\\s?+(\\\"\\w+\\\"|\\[(?:(?:[^\\[\\]]*)(?>\\[[^\\]]*\\])?(?:[^\\[\\]]*))*\\]|\\{(?:(?:[^\\{\\}]*)(?>\\{[^\\}]*\\})?(?:[^\\{\\}]*))*\\})|(\\w+)\\s+\\=\\s+\\\"?([\\/\\w\\-\\$\\.\\=\\ \\>\\<\\#\\:\\\\]++)\\\"?)"
+
+              , Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
               List<Map<String, String>> providersVariablesList  = new ArrayList<Map<String, String>>();
               Matcher m = extractProviderVariablePattern.matcher(allFileContent);
               while (m.find()) {

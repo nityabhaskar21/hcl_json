@@ -18,7 +18,7 @@ variable "test" {
 
 }
 
-variable bucket_settings {
+variable bucket_settings1 {
   type = object({
     location           = string
     storage_class      = string

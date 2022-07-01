@@ -48,7 +48,6 @@ variable bucket_settings {
 }
 
 variable bucket_settings {
-  type  = list(string)
   type = object({
     location           = string
     storage_class      = string

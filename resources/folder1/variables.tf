@@ -73,9 +73,6 @@ variable bucket_settings {
     lifecycle_rules = {
       bucket_policy_only = true
     }
-    lifecycle_rules = {
-      bucket_policy_only = true
-    }
     location = europe-west4
   }
 }

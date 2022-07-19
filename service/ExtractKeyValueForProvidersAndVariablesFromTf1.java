@@ -14,7 +14,9 @@ import java.util.regex.Matcher;
 public class ExtractKeyValueForProvidersAndVariablesFromTf1 {
     public static void main(String[] args) {
         try{    
+            // File folder = new File("E:\\hcl_json\\resources\\tf-zipDemo");
             File folder = new File("E:\\hcl_json\\resources\\folder1");
+
             File[] listOfFiles = folder.listFiles();
   
             String allFileContent = "";

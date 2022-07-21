@@ -15,7 +15,7 @@ public class ExtractKeyValueForProvidersAndVariablesFromTf1 {
     public static void main(String[] args) {
         try{    
             // File folder = new File("E:\\hcl_json\\resources\\tf-zipDemo");
-            File folder = new File("E:\\hcl_json\\resources\\folder1");
+            File folder = new File("E:\\hcl_json\\resources\\folder2");
 
             File[] listOfFiles = folder.listFiles();
   
@@ -32,14 +32,14 @@ public class ExtractKeyValueForProvidersAndVariablesFromTf1 {
                 }
             }
            
-              // "(variable|provider)[\"\:\s\{]+([\w\-]++)(?:[\"\ ]++)(?:\{).*?(?:\})(?=(?:\s+[\w\#]|$))(?![^\{]*= *\{)(?![^\{]*= *[\w\$\"])" flags=gis , regex101 get provider block
-              // "(?:(type)\s*+\=\s*+(\w+)|(default)\s*+\=\s*+((?:(?:\{(?:(?:[^\{\}]*+)(?:\{[^\{\}]*+(?:\{[^\{\}]*+\})*[^\{\}]*+\})*(?:[^\{\}]*+))*\})|(?:\[(?:(?:[^\[\]]*+)(?:\[[^\[\]]*+(?:\[[^\[\]]*+\])*[^\[\]]*+\])*(?:[^\[\]]*+))*\])))|(?:(?<!\#\h)(?<!\w)(\w+)\s*+\=\s*+\"?([\/\w\-\$\.\=\ \>\<\#\:\\\[\]]++)\"?))" flags=gis , regex101 get key-value
+              // "(variable|provider)[\"\:\s\{]+([\w\-]++)(?:[\"\ ]++)(?:\{).*?(?:\})(?=(?:\s+[\w\#]|\s*$))(?![^\{]*= *\{)(?![^\{]*= *[\w\$\"])" flags=gis , regex101 get provider block
+              // "(variable|provider)[\\\"\\:\\s\\{]+([\\w\\-]++)(?:[\\\"\\ ]++)(?:\\{).*?(?:\\})(?=(?:\\s+[\\w\\#]|\\s*$))(?![^\\{]*= *\\{)(?![^\\{]*= *[\\w\\$\\\"])" flags=gis , regex101 get key-value
               
-              final Pattern extractProviderVariablePattern = Pattern.compile( "(variable|provider)[\\\"\\:\\s\\{]+([\\w\\-]++)(?:[\\\"\\ ]++)(?:\\{).*?(?:\\})(?=(?:\\s+[\\w\\#]|$))(?![^\\{]*= *\\{)(?![^\\{]*= *[\\w\\$\\\"])"
+              final Pattern extractProviderVariablePattern = Pattern.compile( "(variable|provider)[\\\"\\:\\s\\{]+([\\w\\-]++)(?:[\\\"\\ ]++)(?:\\{).*?(?:\\})(?=(?:\\s+[\\w\\#]|\\s*$))(?![^\\{]*= *\\{)(?![^\\{]*= *[\\w\\$\\\"])"
               , Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
               
               final Pattern extractKeyValuePattern = Pattern.compile( 	"(?:(type)\\s*+\\=\\s*+(\\w+)|(default)\\s*+\\=\\s*+((?:(?:\\{(?:(?:[^\\{\\}]*+)(?:\\{[^\\{\\}]*+(?:\\{[^\\{\\}]*+\\})*[^\\{\\}]*+\\})*(?:[^\\{\\}]*+))*\\})|(?:\\[(?:(?:[^\\[\\]]*+)(?:\\[[^\\[\\]]*+(?:\\[[^\\[\\]]*+\\])*[^\\[\\]]*+\\])*(?:[^\\[\\]]*+))*\\])))|(?:(?<!\\#\\h)(?<!\\w)(\\w+)\\s*+\\=\\s*+\\\"?([\\/\\w\\-\\$\\.\\=\\ \\>\\<\\#\\:\\\\\\[\\]]++)\\\"?))"
-              , Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+              , Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
               
               List<Map<String, String>> providersVariablesList  = new ArrayList<Map<String, String>>();
               Matcher m = extractProviderVariablePattern.matcher(allFileContent);
